@@ -14,7 +14,7 @@ public class Consumer {
 
 	@RabbitListener(queues = DEFAULT_QUEUE)
 	public void receiveMessage(String message) {
-		log.info("Received message: {}", message);
+		log.info("Received a message '{}'", message);
 	}
 
 }

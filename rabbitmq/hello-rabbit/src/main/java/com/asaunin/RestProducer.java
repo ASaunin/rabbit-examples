@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.asaunin.QueueConfiguration.DEFAULT_QUEUE;
-import static com.asaunin.QueueConfiguration.DEFAULT_REST_MESSAGE;
 
 @RestController
 public class RestProducer {
 
 	private static final Logger log = LoggerFactory.getLogger(RestProducer.class);
+
+	private static final String DEFAULT_MESSAGE = "Hello, REST Rabbit!";
 
 	private final RabbitTemplate template;
 
@@ -25,7 +26,8 @@ public class RestProducer {
 	}
 
 	@GetMapping(value = "/send") //Preferable to use post, but not so representative
-	public ResponseEntity<String> send(@RequestParam(name = "msg", defaultValue = DEFAULT_REST_MESSAGE, required = false) String message) {
+	public ResponseEntity<String> send(
+			@RequestParam(name = "msg", defaultValue = DEFAULT_MESSAGE, required = false) String message) {
 		template.convertAndSend(DEFAULT_QUEUE, message);
 		log.info("Sent rest message: {}", message);
 		return ResponseEntity.ok(message);

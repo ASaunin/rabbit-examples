@@ -30,13 +30,6 @@
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 
-		<!--For the REST producer-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!--For the REST producer-->
-
 		<!--Actually, redundant here-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -64,6 +57,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
+	
 </project>
