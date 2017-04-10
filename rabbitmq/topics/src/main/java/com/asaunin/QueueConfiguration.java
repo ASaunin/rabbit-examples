@@ -24,7 +24,7 @@ public class QueueConfiguration {
 	private static final String RABBIT_KEY = "*.*.rabbit";
 
 	@Bean
-	public TopicExchange topicExchange() {
+	public TopicExchange exchange() {
 		return new TopicExchange(DEFAULT_EXCHANGE);
 	}
 
@@ -35,7 +35,7 @@ public class QueueConfiguration {
 
 	@Bean
 	Binding orangeBinding() {
-		return BindingBuilder.bind(orangeQueue()).to(topicExchange()).with(ORANGE_KEY);
+		return BindingBuilder.bind(orangeQueue()).to(exchange()).with(ORANGE_KEY);
 	}
 
 	@Bean
@@ -48,7 +48,7 @@ public class QueueConfiguration {
 		return Stream.of(LAZY_KEY, RABBIT_KEY)
 				.map(e -> BindingBuilder.bind(
 						lazyOrRabbitQueue())
-						.to(topicExchange())
+						.to(exchange())
 						.with(e))
 				.collect(Collectors.toList());
 	}

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.asaunin.QueueConfiguration.DEFAULT_FANOUT;
+import static com.asaunin.QueueConfiguration.DEFAULT_EXCHANGE;
 
 @Service
 public class Producer {
@@ -30,7 +30,7 @@ public class Producer {
 		final int count = ThreadLocalRandom.current().nextInt(0, 100);
 		final String message = String.format(DEFAULT_MESSAGE, count);
 
-		template.setExchange(DEFAULT_FANOUT);
+		template.setExchange(DEFAULT_EXCHANGE);
 		template.convertAndSend(message);
 		log.info("Sent a message '{}'", message);
 	}

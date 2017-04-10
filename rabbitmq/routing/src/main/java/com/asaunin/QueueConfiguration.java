@@ -19,7 +19,7 @@ public class QueueConfiguration {
 	static final String DEFAULT_EXCHANGE = "direct.exchange";
 
 	@Bean
-	public DirectExchange directExchange() {
+	public DirectExchange exchange() {
 		return new DirectExchange(DEFAULT_EXCHANGE);
 	}
 
@@ -34,7 +34,7 @@ public class QueueConfiguration {
 				.filter(Entities::isAlive)
 				.map(e -> BindingBuilder.bind(
 						aliveQueue())
-						.to(directExchange())
+						.to(exchange())
 						.with(e))
 				.collect(Collectors.toList());
 	}
@@ -50,7 +50,7 @@ public class QueueConfiguration {
 				.filter(Entities::isDead)
 				.map(e -> BindingBuilder.bind(
 						deadQueue())
-						.to(directExchange())
+						.to(exchange())
 						.with(e))
 				.collect(Collectors.toList());
 	}

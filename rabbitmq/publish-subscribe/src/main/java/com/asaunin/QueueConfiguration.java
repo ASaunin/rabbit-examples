@@ -12,11 +12,11 @@ public class QueueConfiguration {
 
 	static final String FIRST_QUEUE = "first.queue";
 	static final String SECOND_QUEUE = "second.queue";
-	static final String DEFAULT_FANOUT = "fanout";
+	static final String DEFAULT_EXCHANGE = "fanout.exchange";
 
 	@Bean
-	public FanoutExchange fanoutExchange(){
-		return new FanoutExchange(DEFAULT_FANOUT);
+	public FanoutExchange exchange(){
+		return new FanoutExchange(DEFAULT_EXCHANGE);
 	}
 
 	@Bean
@@ -31,12 +31,12 @@ public class QueueConfiguration {
 
 	@Bean
 	public Binding firstBinding(){
-		return BindingBuilder.bind(firstQueue()).to(fanoutExchange());
+		return BindingBuilder.bind(firstQueue()).to(exchange());
 	}
 
 	@Bean
 	public Binding secondBinding(){
-		return BindingBuilder.bind(secondQueue()).to(fanoutExchange());
+		return BindingBuilder.bind(secondQueue()).to(exchange());
 	}
 
 }

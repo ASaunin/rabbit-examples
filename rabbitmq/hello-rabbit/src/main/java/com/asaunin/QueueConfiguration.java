@@ -10,7 +10,7 @@ public class QueueConfiguration {
 	static final String DEFAULT_QUEUE = "rabbit.queue";
 
 	@Bean
-	public Queue hello() {
+	public Queue queue() {
 		return new Queue(DEFAULT_QUEUE);
 	}
 
